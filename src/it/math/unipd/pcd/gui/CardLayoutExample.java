@@ -66,8 +66,8 @@ public class CardLayoutExample extends JFrame {
         JPanel comboPane = createCombo();
         // Create cards deck
         cards = new JPanel(new CardLayout());
-        cards.add(createCard1(), "Card 1");
-        cards.add(createCard2(), "Card 2");
+        cards.add(createCard(1), "Card 1");
+        cards.add(createCard(2), "Card 2");
         // Add panes to content pane
         pane.add(comboPane, BorderLayout.NORTH);
         pane.add(cards, BorderLayout.CENTER);
@@ -94,14 +94,9 @@ public class CardLayoutExample extends JFrame {
         return comboPane;
     }
 
-    private JPanel createCard1() {
+    private JPanel createCard(int numOfCard) {
         JPanel panel = new JPanel();
-        panel.add(new JButton("Btn of card 1"));
-        return panel;
-    }
-    private JPanel createCard2() {
-        JPanel panel = new JPanel();
-        panel.add(new JButton("Btn of card 2"));
+        panel.add(new JButton("Btn of card " + numOfCard));
         return panel;
     }
 

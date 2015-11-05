@@ -33,6 +33,8 @@ package it.math.unipd.pcd.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Please, insert description here.
@@ -41,50 +43,41 @@ import java.awt.*;
  * @version 1.0
  * @since 1.0
  */
-public class GridLayoutExample extends JFrame {
-    // Static dimensions
-    private static final int DEFAULT_WIDTH = 300;
-    private static final int DEFAULT_HEIGHT = 200;
+public class EventExample extends JFrame {
 
-    // Three stupid buttons
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
+    private Container contentPane;
 
-    public GridLayoutExample(String title) {
+    public EventExample(String title) {
         super(title);
-
-        setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-        addComponentsToPane(getContentPane());
+        setSize(300, 200);
+        this.contentPane = getContentPane();
+        addComponentToFrame(this.contentPane);
     }
 
-    private void addComponentsToPane(final Container pane) {
-        // Building buttons
-        button1 = new JButton("Button 1");
-        button2 = new JButton("Button 2");
-        button3 = new JButton("Button 3");
-        button4 = new JButton("Button 4");
+    private void addComponentToFrame(Container pane) {
+        JPanel panel = new JPanel();
+        makeButton("Yellow", Color.YELLOW, panel);
+        makeButton("Blue", Color.BLUE, panel);
+        makeButton("Red", Color.RED, panel);
+        pane.add(panel, BorderLayout.SOUTH);
+    }
 
-        // Panel with FlowLayout as default layout manager
-        JPanel controls = new JPanel(new GridLayout(2, 2));
-        //GridLayout layout = ;
-        //controls.setLayout(layout);
-        JPanel panel1 = new JPanel();
-        panel1.add(button1);
-        controls.add(panel1);
-        controls.add(button2);
-        controls.add(button3);
-        controls.add(button4);
-
-        pane.add(controls);
+    private void makeButton(String name, final Color color, final JPanel panel) {
+        JButton button = new JButton(name);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                contentPane.setBackground(color);
+            }
+        });
+        panel.add(button);
     }
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                GridLayoutExample frame = new GridLayoutExample("Grid layout example");
+                JFrame frame = new EventExample("Example of event handling");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setVisible(true);
             }
