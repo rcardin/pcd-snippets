@@ -6,5 +6,7 @@ All examples are made in Java. The topics covered are the following:
 
  * Swing and layout management
  * Event handling
+ * Thread basics
+ * Synchronization
  
 *The above list will be updated during the course.*
