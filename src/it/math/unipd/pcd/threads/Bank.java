@@ -131,7 +131,7 @@ class TransferRunnable implements Runnable {
         double amount = Math.random() * MAX_TRANSFERABLE_AMOUNT;
         bank.transfer(from, to, amount);
 
-        System.out.println(String.format("From %s To %s Amount %s Total %s",
+        System.out.println(String.format("From %d To %d Amount %10.2f%n Total %10.2f%n",
                 from, to, amount, bank.getTotal()));
     }
 }
